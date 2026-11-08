@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test FAQ - Why Is My Internet Slow? | PingMeter</title>
+    <meta name="description" content="Answers to common internet speed questions. Why is upload slower? Why do results vary? How to get accurate speed test results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">Ping<span>Meter</span></a>
+            <nav id="main-nav">
+                <a href="index.html">Test</a>
+                <a href="good-speed.html">Good Speed</a>
+                <a href="glossary.html">Glossary</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="about.html">About</a>
+            </nav>
+            <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container content-page">
+        <div class="ad-slot">Advertisement (Header)</div>
+
+        <article class="glass article-card">
+            <h1>Frequently Asked Questions</h1>
+            <p class="article-intro">Everything you need to know about internet speed tests, accuracy, and troubleshooting.</p>
+
+            <!-- FAQ Items -->
+            <div class="faq-item">
+                <h2>Why is my upload speed so much slower than download?</h2>
+                <p>This is normal for most home connections. Cable (DOCSIS) and DSL technologies are designed to be asymmetric — they allocate more bandwidth to download because most users stream and browse more than they upload. If you need fast upload for streaming or cloud work, consider a fiber plan with symmetric speeds.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Why do I get different results each time I test?</h2>
+                <p>Speed fluctuates due to network congestion, Wi-Fi interference, background downloads, and server load. For the most accurate reading: connect via Ethernet, close other apps, test during off-peak hours (2-6 AM), and run 3 tests to get an average.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Why is my speed test result lower than what I pay for?</h2>
+                <p>ISPs advertise "up to" speeds. Actual speeds depend on network congestion, distance from the exchange, Wi-Fi signal strength, and router quality. If you're consistently getting less than 70% of your paid speed on a wired connection, contact your ISP — there may be a line fault.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Does Wi-Fi affect my speed test results?</h2>
+                <p>Absolutely. Wi-Fi adds latency, reduces throughput, and introduces jitter. Walls, other electronic devices, and neighboring networks all interfere. For an accurate test of your actual internet speed (not your Wi-Fi speed), use an Ethernet cable directly to the router.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>What's a good ping for gaming?</h2>
+                <p>Below 30ms is ideal for competitive games. 30-60ms is fine for casual gaming. Above 100ms, you'll notice lag in fast-paced games. Ping depends more on your physical distance to the game server and routing quality than on bandwidth.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Is this speed test accurate?</h2>
+                <p>PingMeter tests your connection against Cloudflare's global edge network, which has servers in 300+ cities worldwide. This gives you results comparable to major speed test services. For the most accurate reading, test on a wired connection with no other active downloads.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>How much speed do I need for Netflix/YouTube?</h2>
+                <p>Netflix recommends 5 Mbps for HD (1080p) and 25 Mbps for 4K Ultra HD. YouTube is similar: 10 Mbps for 1080p, 20+ Mbps for 4K. If multiple people stream simultaneously, add up the requirements per device.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>What causes high jitter and how do I fix it?</h2>
+                <p>High jitter is usually caused by Wi-Fi interference, an overloaded router, or ISP network congestion. Fixes: switch to 5GHz Wi-Fi, move closer to the router, restart your router, or use Ethernet. If jitter persists on a wired connection, it's likely an ISP issue.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Does this test use my mobile data?</h2>
+                <p>Yes — the test uses whatever connection you're currently on. If you're on mobile data, it tests your cellular speed. If you're on Wi-Fi, it tests your Wi-Fi connection. Be aware that the download test uses approximately 100-300 MB of data depending on your speed.</p>
+            </div>
+
+            <div class="faq-item">
+                <h2>Why is my ping high even with fast download speed?</h2>
+                <p>Ping and bandwidth are independent. You can have 1 Gbps download but 200ms ping if you're far from the server, using satellite internet, or routing through congested paths. Ping is about distance and routing quality, not speed capacity.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Still have questions?</h3>
+                <p>Run a test and check if your results match expectations.</p>
+                <a href="index.html" class="btn-start btn-small">Run Speed Test</a>
+            </div>
+        </article>
+
+        <div class="ad-slot">Advertisement (Mid-Page)</div>
+
+        <section class="pivot-section">
+            <h2 class="section-title">Related Topics</h2>
+            <div class="pivot-grid">
+                <a href="good-speed.html" class="pivot-card glass">
+                    <h3>Is My Speed Good?</h3>
+                    <p>Compare your results with recommended speeds for your use case.</p>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="glossary.html" class="pivot-card glass">
+                    <h3>Speed Test Glossary</h3>
+                    <p>Understand every metric: Mbps, ping, jitter, packet loss.</p>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Advertisement (Footer)</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 PingMeter.org. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

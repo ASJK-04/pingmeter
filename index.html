@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PingMeter - Free Internet Speed Test</title>
+    <meta name="description" content="Test your internet download, upload, ping, and jitter instantly. Free, no-signup speed test by PingMeter.">
+    
+    <!-- Google Fonts for Tech Vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Tech Grid Background Effect -->
+    <div class="grid-bg"></div>
+
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">Ping<span>Meter</span></a>
+            <nav id="main-nav">
+                <a href="index.html" class="active">Test</a>
+                <a href="good-speed.html">Good Speed</a>
+                <a href="glossary.html">Glossary</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">About</a>
+            </nav>
+            <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- AD SLOT 1 -->
+        <div class="ad-slot">Advertisement (Header)</div>
+
+        <!-- HERO / TEST SECTION -->
+        <section class="test-area">
+            <h1 class="status-text" id="status-text">Ready to test your speed?</h1>
+            
+            <!-- The Gauge -->
+            <div class="gauge-container">
+                <div class="gauge-ring" id="gauge-ring"></div>
+                <div class="gauge-inner">
+                    <span class="speed-number" id="speed-number">0.0</span>
+                    <span class="speed-unit">Mbps</span>
+                </div>
+            </div>
+
+            <!-- START BUTTON -->
+            <button class="btn-start" id="btn-start">START TEST</button>
+
+            <!-- Secondary Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card glass">
+                    <span class="metric-label">Ping</span>
+                    <span class="metric-value" id="ping-val">-- <small>ms</small></span>
+                </div>
+                <div class="metric-card glass">
+                    <span class="metric-label">Jitter</span>
+                    <span class="metric-value" id="jitter-val">-- <small>ms</small></span>
+                </div>
+                <div class="metric-card glass">
+                    <span class="metric-label">Download</span>
+                    <span class="metric-value" id="dl-val">-- <small>Mbps</small></span>
+                </div>
+                <div class="metric-card glass">
+                    <span class="metric-label">Upload</span>
+                    <span class="metric-value" id="ul-val">-- <small>Mbps</small></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD SLOT 2 -->
+        <div class="ad-slot">Advertisement (Mid-Page)</div>
+
+        <!-- PIVOT CARDS (Crucial for AdSense pageviews) -->
+        <section class="pivot-section">
+            <h2 class="section-title">What do your numbers mean?</h2>
+            <div class="pivot-grid">
+                <a href="good-speed.html" class="pivot-card glass">
+                    <h3>Is my speed good?</h3>
+                    <p>Check if your connection can handle 4K streaming or competitive gaming.</p>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="glossary.html" class="pivot-card glass">
+                    <h3>What is Ping & Jitter?</h3>
+                    <p>Learn the technical terms that affect your lag and connection stability.</p>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="faq.html" class="pivot-card glass">
+                    <h3>Why is my upload slow?</h3>
+                    <p>Read our FAQ to troubleshoot common ISP throttling and Wi-Fi issues.</p>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- AD SLOT 3 -->
+        <div class="ad-slot">Advertisement (Footer)</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 PingMeter.org. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link JS -->
+    <script src="js/ping.js"></script>
+    <script src="js/download.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

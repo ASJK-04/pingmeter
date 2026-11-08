@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is a Good Internet Speed? | PingMeter</title>
+    <meta name="description" content="Find out what internet speed you need for gaming, 4K streaming, video calls, and more. Compare your results with our speed guide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">Ping<span>Meter</span></a>
+            <nav id="main-nav">
+                <a href="index.html">Test</a>
+                <a href="good-speed.html" class="active">Good Speed</a>
+                <a href="glossary.html">Glossary</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">About</a>
+            </nav>
+            <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container content-page">
+        <div class="ad-slot">Advertisement (Header)</div>
+
+        <article class="glass article-card">
+            <h1>What Is a Good Internet Speed?</h1>
+            <p class="article-intro">Not sure if your speed test results are good enough? Here's a practical breakdown of what you need for different online activities.</p>
+
+            <h2>Quick Reference Table</h2>
+            <div class="table-wrapper">
+                <table class="speed-table">
+                    <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Min. Download</th>
+                            <th>Min. Upload</th>
+                            <th>Max Ping</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Web Browsing</td><td>5 Mbps</td><td>1 Mbps</td><td>100 ms</td></tr>
+                        <tr><td>HD Streaming (1080p)</td><td>10 Mbps</td><td>3 Mbps</td><td>100 ms</td></tr>
+                        <tr><td>4K Streaming (Netflix)</td><td>25 Mbps</td><td>5 Mbps</td><td>100 ms</td></tr>
+                        <tr><td>Video Calls (Zoom/Meet)</td><td>10 Mbps</td><td>5 Mbps</td><td>150 ms</td></tr>
+                        <tr><td>Online Gaming</td><td>15 Mbps</td><td>5 Mbps</td><td>50 ms</td></tr>
+                        <tr><td>Competitive Gaming (FPS)</td><td>25 Mbps</td><td>10 Mbps</td><td>30 ms</td></tr>
+                        <tr><td>Live Streaming (Twitch)</td><td>10 Mbps</td><td>15 Mbps</td><td>50 ms</td></tr>
+                        <tr><td>Large File Downloads</td><td>100+ Mbps</td><td>20 Mbps</td><td>N/A</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>For Gaming: Ping Matters More Than Speed</h2>
+            <p>Many gamers think they need 500 Mbps to play online games smoothly. In reality, most games only use 3-6 Mbps of bandwidth. What actually causes lag is <strong>high ping (latency)</strong> and <strong>jitter</strong>.</p>
+            <p>For competitive shooters like Valorant, CS2, or Fortnite, aim for a ping below 30ms. If your ping is above 100ms, you'll notice rubber-banding, delayed hits, and disconnections — even on a 1 Gbps connection.</p>
+            <p><strong>Tip:</strong> Use an Ethernet cable instead of Wi-Fi to reduce ping by 10-30ms instantly.</p>
+
+            <h2>For Streaming: Upload Is King</h2>
+            <p>If you're streaming on Twitch or YouTube Live, your <strong>upload speed</strong> is what matters. A 1080p stream at 60fps requires at least 6-8 Mbps upload. For 4K streaming, you'll need 20+ Mbps upload.</p>
+            <p>Most residential internet plans are asymmetric — meaning your upload is much slower than your download. If you stream regularly, look for fiber plans with symmetric speeds (e.g., 300 Mbps down / 300 Mbps up).</p>
+
+            <h2>For Video Calls: Stability Wins</h2>
+            <p>Zoom, Google Meet, and Teams don't need much bandwidth — 5-10 Mbps is plenty. But they're extremely sensitive to <strong>jitter</strong> (inconsistent latency). High jitter causes choppy audio, frozen video, and "you're breaking up" moments.</p>
+            <p>If your video calls keep dropping, run our speed test multiple times. If your ping and jitter vary wildly between tests, your connection is unstable — likely due to Wi-Fi interference or ISP congestion.</p>
+
+            <h2>How Many Devices Can Your Speed Handle?</h2>
+            <p>Divide your total speed by the number of active devices. A 100 Mbps plan with 5 people streaming simultaneously gives each person ~20 Mbps. That's fine for HD, but 4K will buffer during peak hours.</p>
+            <ul class="content-list">
+                <li><strong>1-2 devices:</strong> 50 Mbps is plenty</li>
+                <li><strong>3-5 devices:</strong> Aim for 100-200 Mbps</li>
+                <li><strong>6+ devices:</strong> Consider 300+ Mbps or fiber</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Not sure where you stand?</h3>
+                <p>Run a free speed test and compare your results with this guide.</p>
+                <a href="index.html" class="btn-start btn-small">Run Speed Test</a>
+            </div>
+        </article>
+
+        <div class="ad-slot">Advertisement (Mid-Page)</div>
+
+        <!-- Related Pages -->
+        <section class="pivot-section">
+            <h2 class="section-title">Related Topics</h2>
+            <div class="pivot-grid">
+                <a href="glossary.html" class="pivot-card glass">
+                    <h3>Speed Test Glossary</h3>
+                    <p>Learn what Mbps, ping, jitter, and packet loss actually mean.</p>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="faq.html" class="pivot-card glass">
+                    <h3>FAQ</h3>
+                    <p>Why is my upload slower? Why do results vary between tests?</p>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Advertisement (Footer)</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 PingMeter.org. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

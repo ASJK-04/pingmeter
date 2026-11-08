@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test Glossary - Mbps, Ping, Jitter Explained | PingMeter</title>
+    <meta name="description" content="Understand your speed test results. Learn what download speed, upload speed, ping, jitter, latency, and packet loss mean in simple terms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">Ping<span>Meter</span></a>
+            <nav id="main-nav">
+                <a href="index.html">Test</a>
+                <a href="good-speed.html">Good Speed</a>
+                <a href="glossary.html" class="active">Glossary</a>
+                <a href="faq.html">FAQ</a>
+                <a href="about.html">About</a>
+            </nav>
+            <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container content-page">
+        <div class="ad-slot">Advertisement (Header)</div>
+
+        <article class="glass article-card">
+            <h1>Internet Speed Test Glossary</h1>
+            <p class="article-intro">Confused by the numbers on your speed test? Here's what every metric means, explained in plain English.</p>
+
+            <!-- Download Speed -->
+            <div class="glossary-item">
+                <h2>Download Speed (Mbps)</h2>
+                <p>How fast data travels <strong>from the internet to your device</strong>. This is the number ISPs advertise (e.g., "300 Mbps plan"). It affects streaming, loading web pages, and downloading files.</p>
+                <p><strong>Real-world example:</strong> At 100 Mbps, you can download a 5 GB movie in about 7 minutes. At 10 Mbps, it takes over an hour.</p>
+            </div>
+
+            <!-- Upload Speed -->
+            <div class="glossary-item">
+                <h2>Upload Speed (Mbps)</h2>
+                <p>How fast data travels <strong>from your device to the internet</strong>. This matters for video calls, live streaming, cloud backups, and sending large files.</p>
+                <p><strong>Why it's usually slower:</strong> Most home connections (cable, DSL) are asymmetric — they prioritize download because most users consume more than they create. Fiber plans often offer symmetric speeds (e.g., 300 down / 300 up).</p>
+            </div>
+
+            <!-- Ping / Latency -->
+            <div class="glossary-item">
+                <h2>Ping (Latency)</h2>
+                <p>The time it takes for a small data packet to travel from your device to a server and back, measured in <strong>milliseconds (ms)</strong>. Lower is better.</p>
+                <p><strong>Benchmarks:</strong></p>
+                <ul class="content-list">
+                    <li>0-20 ms: Excellent (fiber, wired)</li>
+                    <li>20-50 ms: Good (most broadband)</li>
+                    <li>50-100 ms: Acceptable (Wi-Fi, 4G)</li>
+                    <li>100-200 ms: Noticeable lag in games</li>
+                    <li>200+ ms: Poor (satellite, congested networks)</li>
+                </ul>
+            </div>
+
+            <!-- Jitter -->
+            <div class="glossary-item">
+                <h2>Jitter</h2>
+                <p>The <strong>variation in ping</strong> over time. If your ping is 20ms one moment and 80ms the next, you have high jitter. It causes choppy audio and frozen video in calls.</p>
+                <p><strong>Good jitter:</strong> Below 10ms. <strong>Bad jitter:</strong> Above 30ms. High jitter usually indicates Wi-Fi interference, network congestion, or a struggling router.</p>
+            </div>
+
+            <!-- Packet Loss -->
+            <div class="glossary-item">
+                <h2>Packet Loss (%)</h2>
+                <p>The percentage of data packets that <strong>never reach their destination</strong>. Even 1-2% packet loss can cause visible issues in games and video calls.</p>
+                <p><strong>Causes:</strong> Faulty cables, overloaded routers, Wi-Fi interference, or ISP infrastructure problems. 0% is ideal; anything above 2% is problematic.</p>
+            </div>
+
+            <!-- Bandwidth vs Speed -->
+            <div class="glossary-item">
+                <h2>Bandwidth vs. Speed</h2>
+                <p><strong>Bandwidth</strong> is the maximum capacity of your connection (like the width of a highway). <strong>Speed</strong> is how fast data actually moves (like the speed limit). You can have 500 Mbps bandwidth but only get 200 Mbps speed if the network is congested.</p>
+            </div>
+
+            <!-- Mbps vs MB/s -->
+            <div class="glossary-item">
+                <h2>Mbps vs. MB/s</h2>
+                <p><strong>Mbps</strong> = Megabits per second (used by ISPs). <strong>MB/s</strong> = Megabytes per second (used by file downloads). 1 Byte = 8 bits. So 100 Mbps ≈ 12.5 MB/s actual download speed.</p>
+                <p>This is why your "100 Mbps" plan shows ~12 MB/s when downloading a file from Steam. You're not being cheated — it's just a different unit.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to check your numbers?</h3>
+                <p>Run a test and come back to compare your results.</p>
+                <a href="index.html" class="btn-start btn-small">Run Speed Test</a>
+            </div>
+        </article>
+
+        <div class="ad-slot">Advertisement (Mid-Page)</div>
+
+        <section class="pivot-section">
+            <h2 class="section-title">Related Topics</h2>
+            <div class="pivot-grid">
+                <a href="good-speed.html" class="pivot-card glass">
+                    <h3>Is My Speed Good?</h3>
+                    <p>See recommended speeds for gaming, streaming, and video calls.</p>
+                    <span class="arrow">→</span>
+                </a>
+                <a href="faq.html" class="pivot-card glass">
+                    <h3>FAQ</h3>
+                    <p>Common questions about speed test accuracy and ISP issues.</p>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Advertisement (Footer)</div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 PingMeter.org. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

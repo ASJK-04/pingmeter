@@ -1,8 +1,3 @@
-/**
- * PingMeter - Ping & Jitter Measurement
- * Measures latency by timing small fetch requests
- */
-
 const PingTest = {
     url: '/ping',
     samples: 5,
@@ -15,32 +10,25 @@ const PingTest = {
             try {
                 await fetch(this.url + '?t=' + Date.now(), {
                     method: 'GET',
-                    cache: 'no-store',
-                    headers: { 'Cache-Control': 'no-cache' }
+                    cache: 'no-store'
                 });
-                const end = performance.now();
-                results.push(end - start);
+                results.push(performance.now() - start);
             } catch (e) {
-                results.push(999); // Timeout fallback
+                results.push(999);
             }
             if (onProgress) onProgress(i + 1, this.samples);
         }
 
-        // Remove the first sample (warm-up)
-        const validResults = results.slice(1);
+        const valid = results.slice(1).filter(r => r < 999);
+        const sorted = valid.slice().sort((a, b) => a - b);
+        const ping = Math.round(sorted[Math.floor(sorted.length / 2)] || 0);
 
-        // Average ping
-        const avgPing = Math.round(
-            validResults.reduce((a, b) => a + b, 0) / validResults.length
-        );
-
-        // Jitter = average difference between consecutive pings
         let jitterSum = 0;
-        for (let i = 1; i < validResults.length; i++) {
-            jitterSum += Math.abs(validResults[i] - validResults[i - 1]);
+        for (let i = 1; i < valid.length; i++) {
+            jitterSum += Math.abs(valid[i] - valid[i - 1]);
         }
-        const jitter = Math.round(jitterSum / (validResults.length - 1));
+        const jitter = Math.round(jitterSum / Math.max(valid.length - 1, 1));
 
-        return { ping: avgPing, jitter: jitter };
+        return { ping: ping, jitter: jitter };
     }
 };

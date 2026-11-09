@@ -1,61 +1,66 @@
-/**
- * PingMeter - Upload Speed Measurement (Optimized)
- * Reduced chunk size and duration
- */
-
 const UploadTest = {
     url: '/upload',
-    duration: 5000,              // 5 seconds (was 8)
-    chunkSize: 1 * 1024 * 1024,  // 1 MB per chunk (was 2 MB)
+    duration: 6000,
+    warmup: 1200,
+    streams: 3,
+    chunkSize: 2 * 1024 * 1024,
 
     async run(onProgress) {
-        let totalUploaded = 0;
+        this._totalBytes = 0;
+        this._warmupBytes = 0;
         const startTime = performance.now();
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), this.duration);
 
-        while (performance.now() - startTime < this.duration) {
-            const blob = this._generateBlob(this.chunkSize);
-
-            try {
-                await this._uploadChunk(blob, (loaded) => {
-                    const elapsed = (performance.now() - startTime) / 1000;
-                    const currentTotal = totalUploaded + loaded;
-                    const speed = (currentTotal * 8) / elapsed / 1000000;
-                    if (onProgress) onProgress(speed);
-                });
-                totalUploaded += this.chunkSize;
-            } catch (e) {
-                break;
-            }
+        const promises = [];
+        for (let i = 0; i < this.streams; i++) {
+            promises.push(this._stream(controller.signal, startTime, onProgress));
         }
+        await Promise.allSettled(promises);
+        clearTimeout(timeout);
 
         const elapsed = (performance.now() - startTime) / 1000;
-        const speedMbps = (totalUploaded * 8) / elapsed / 1000000;
+        const steadyBytes = this._totalBytes - this._warmupBytes;
+        const steadyTime = elapsed - this.warmup / 1000;
+        const speed = steadyTime > 0 ? (steadyBytes * 8) / steadyTime / 1000000 : 0;
 
-        return Math.round(speedMbps * 100) / 100;
+        return Math.round(speed * 100) / 100;
     },
 
-    _uploadChunk(blob, onProgress) {
-        return new Promise((resolve, reject) => {
+    async _stream(signal, startTime, onProgress) {
+        while (!signal.aborted && performance.now() - startTime < this.duration) {
+            const blob = this._generateBlob(this.chunkSize);
+            const ok = await this._send(blob, signal, startTime,
+                (loaded) => {
+                    const el = (performance.now() - startTime) / 1000;
+                    onProgress(((this._totalBytes + loaded) * 8) / el / 1000000);
+                },
+                (bytes, atMs) => {
+                    this._totalBytes += bytes;
+                    if (atMs - startTime < this.warmup) this._warmupBytes += bytes;
+                }
+            );
+            if (!ok) break;
+        }
+    },
+
+    _send(blob, signal, startTime, onProgress, onDone) {
+        return new Promise((resolve) => {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', this.url + '?t=' + Date.now());
 
             xhr.upload.onprogress = (e) => {
-                if (e.lengthComputable && onProgress) {
-                    onProgress(e.loaded);
-                }
+                if (e.lengthComputable) onProgress(e.loaded);
             };
-
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    resolve();
-                } else {
-                    reject(new Error('Upload failed'));
-                }
+                    onDone(blob.size, performance.now());
+                    resolve(true);
+                } else resolve(false);
             };
-
-            xhr.onerror = () => reject(new Error('Network error'));
-            xhr.timeout = 10000;
-            xhr.ontimeout = () => reject(new Error('Timeout'));
+            xhr.onerror = () => resolve(false);
+            xhr.onabort = () => resolve(false);
+            signal.addEventListener('abort', () => xhr.abort());
 
             xhr.send(blob);
         });
@@ -69,5 +74,8 @@ const UploadTest = {
             crypto.getRandomValues(chunk);
         }
         return new Blob([buffer]);
-    }
+    },
+
+    _totalBytes: 0,
+    _warmupBytes: 0
 };

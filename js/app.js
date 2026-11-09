@@ -78,10 +78,9 @@ const App = {
             this.state.results.upload = uploadSpeed;
             this._updateUpload(uploadSpeed);
 
-            // Complete
             this._setStatus('Test Complete!');
             this.els.statusText.style.color = 'var(--accent)';
-            this._showFinalSpeed(downloadSpeed);
+            this._updateGauge(downloadSpeed, 200);
 
             // Save to history
             this.saveResult();

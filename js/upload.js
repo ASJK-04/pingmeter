@@ -1,68 +1,82 @@
 const UploadTest = {
-    url: '/upload',
+    url: 'https://speed.cloudflare.com/__up',
     duration: 6000,
-    warmup: 1200,
+    warmup: 1500,
     streams: 3,
     chunkSize: 2 * 1024 * 1024,
 
     async run(onProgress) {
         this._totalBytes = 0;
         this._warmupBytes = 0;
+        this._blob = this._blob || this._generateBlob(this.chunkSize);
+
         const startTime = performance.now();
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), this.duration);
 
-        const promises = [];
-        for (let i = 0; i < this.streams; i++) {
-            promises.push(this._stream(controller.signal, startTime, onProgress));
+        try {
+            const promises = Array.from({ length: this.streams }, () =>
+                this._stream(controller.signal, startTime, onProgress)
+            );
+            await Promise.allSettled(promises);
+            if (this._totalBytes === 0) throw new Error('Upload failed');
+        } finally {
+            clearTimeout(timeout);
         }
-        await Promise.allSettled(promises);
-        clearTimeout(timeout);
 
         const elapsed = (performance.now() - startTime) / 1000;
         const steadyBytes = this._totalBytes - this._warmupBytes;
-        const steadyTime = elapsed - this.warmup / 1000;
-        const speed = steadyTime > 0 ? (steadyBytes * 8) / steadyTime / 1000000 : 0;
+        const steadyTime = Math.max(elapsed - (this.warmup / 1000), 0.1);
+        const speed = (steadyBytes * 8) / steadyTime / 1000000;
 
         return Math.round(speed * 100) / 100;
     },
 
     async _stream(signal, startTime, onProgress) {
-        while (!signal.aborted && performance.now() - startTime < this.duration) {
-            const blob = this._generateBlob(this.chunkSize);
-            const ok = await this._send(blob, signal, startTime,
-                (loaded) => {
-                    const el = (performance.now() - startTime) / 1000;
-                    onProgress(((this._totalBytes + loaded) * 8) / el / 1000000);
-                },
-                (bytes, atMs) => {
-                    this._totalBytes += bytes;
-                    if (atMs - startTime < this.warmup) this._warmupBytes += bytes;
-                }
-            );
-            if (!ok) break;
+        while (!signal.aborted) {
+            const ok = await this._send(signal, startTime, onProgress);
+            if (!ok) {
+                if (signal.aborted) break;
+                throw new Error('Upload failed');
+            }
         }
     },
 
-    _send(blob, signal, startTime, onProgress, onDone) {
+    _send(signal, startTime, onProgress) {
         return new Promise((resolve) => {
+            if (signal.aborted) return resolve(false);
+
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', this.url + '?t=' + Date.now());
+            let lastLoaded = 0;
 
+            const onAbort = () => xhr.abort();
+            signal.addEventListener('abort', onAbort, { once: true });
+
+            const finish = (ok) => {
+                signal.removeEventListener('abort', onAbort);
+                resolve(ok);
+            };
+
+            xhr.open('POST', this.url);
             xhr.upload.onprogress = (e) => {
-                if (e.lengthComputable) onProgress(e.loaded);
+                if (e.lengthComputable) {
+                    const delta = e.loaded - lastLoaded;
+                    lastLoaded = e.loaded;
+                    this._totalBytes += delta;
+                    if (performance.now() - startTime < this.warmup) {
+                        this._warmupBytes += delta;
+                    }
+                    if (onProgress) {
+                        const el = (performance.now() - startTime) / 1000;
+                        onProgress((this._totalBytes * 8) / el / 1000000);
+                    }
+                }
             };
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    onDone(blob.size, performance.now());
-                    resolve(true);
-                } else resolve(false);
-            };
-            xhr.onerror = () => resolve(false);
-            xhr.onabort = () => resolve(false);
-            signal.addEventListener('abort', () => xhr.abort());
+            xhr.onload = () => finish(xhr.status >= 200 && xhr.status < 300);
+            xhr.onerror = () => finish(false);
+            xhr.onabort = () => finish(false);
 
-            xhr.send(blob);
+            xhr.send(this._blob);
         });
     },
 
@@ -71,11 +85,12 @@ const UploadTest = {
         const view = new Uint8Array(buffer);
         for (let i = 0; i < size; i += 65536) {
             const chunk = view.subarray(i, Math.min(i + 65536, size));
-            crypto.getRandomValues(chunk);
+            for (let j = 0; j < chunk.length; j++) chunk[j] = j % 256;
         }
         return new Blob([buffer]);
     },
 
     _totalBytes: 0,
-    _warmupBytes: 0
+    _warmupBytes: 0,
+    _blob: null
 };

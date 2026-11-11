@@ -1,17 +1,13 @@
 const PingTest = {
-    url: '/ping',
-    samples: 5,
+    url: 'https://speed.cloudflare.com/__down?bytes=0',
+    samples: 10,
 
     async run(onProgress) {
         const results = [];
-
         for (let i = 0; i < this.samples; i++) {
             const start = performance.now();
             try {
-                await fetch(this.url + '?t=' + Date.now(), {
-                    method: 'GET',
-                    cache: 'no-store'
-                });
+                await fetch(this.url + '&t=' + Date.now(), { cache: 'no-store' });
                 results.push(performance.now() - start);
             } catch (e) {
                 results.push(999);

@@ -2,125 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PingMeter - Free Internet Speed Test</title>
-    <meta name="description" content="Test your internet download, upload, ping, and jitter instantly. Free, no-signup speed test by PingMeter.">
-    
-    <!-- Google Fonts for Tech Vibe -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Speed Test - Free Download, Upload & Ping Test | PingMeter</title>
+    <meta name="description" content="Test your internet speed in 15 seconds. Measure download, upload, ping and jitter for free. No signup, no app. Powered by Cloudflare's global edge network.">
+    <link rel="canonical" href="https://pingmeter.pages.dev/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PingMeter - Free Internet Speed Test">
+    <meta property="og:description" content="Measure download, upload, ping and jitter in seconds. No signup required.">
+    <meta property="og:url" content="https://pingmeter.pages.dev/">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- Link CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <!-- Tech Grid Background Effect -->
     <div class="grid-bg"></div>
 
-    <!-- HEADER -->
     <header class="glass-header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">Ping<span>Meter</span></a>
-            <nav id="main-nav">
-                <a href="index.html" class="active">Test</a>
-                <a href="good-speed.html">Good Speed</a>
-                <a href="glossary.html">Glossary</a>
-                <a href="faq.html">FAQ</a>
-                <a href="about.html">About</a>
+            <a href="./" class="logo" aria-label="PingMeter home">
+                <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0B0F19"/><path d="M8 36h12l6-16 10 24 6-12h14" fill="none" stroke="#00F0FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Ping<span>Meter</span>
+            </a>
+            <nav id="main-nav" aria-label="Main navigation">
+                <a href="./" class="active">Test</a>
+                <a href="good-speed">Good Speed</a>
+                <a href="glossary">Glossary</a>
+                <a href="faq">FAQ</a>
+                <a href="about">About</a>
             </nav>
-            <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')">
+            <button class="menu-toggle" aria-label="Toggle menu" onclick="document.getElementById('main-nav').classList.toggle('open')">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
     <main class="container">
-        
-        <!-- AD SLOT 1 -->
-        <div class="ad-slot">Advertisement (Header)</div>
+        <div class="ad-slot" aria-hidden="true"></div>
 
-        <!-- HERO / TEST SECTION -->
         <section class="test-area">
-            <h1 class="status-text" id="status-text">Ready to test your speed?</h1>
-            
-            <!-- The Gauge -->
-            <div class="gauge-container">
-                <div class="gauge-ring" id="gauge-ring"></div>
-                <div class="gauge-inner">
+            <h1>Internet Speed Test</h1>
+            <p class="subtitle">Measure download, upload, ping and jitter — free, no signup.</p>
+
+            <p class="status-pill" id="status-text" role="status" aria-live="polite">Ready when you are</p>
+
+            <div class="gauge-wrap">
+                <svg viewBox="0 0 300 300" class="gauge-svg" role="img" aria-label="Speed gauge">
+                    <defs>
+                        <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#00F0FF"/>
+                            <stop offset="100%" stop-color="#3B82F6"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="gauge-track" d="M 65.147 234.853 A 120 120 0 1 1 234.853 234.853"/>
+                    <path class="gauge-fill" id="gauge-fill" d="M 65.147 234.853 A 120 120 0 1 1 234.853 234.853"/>
+                    <g id="gauge-ticks"></g>
+                    <g id="gauge-needle" transform="rotate(135 150 150)">
+                        <line x1="150" y1="150" x2="238" y2="150"/>
+                    </g>
+                    <circle cx="150" cy="150" r="7" class="gauge-hub"/>
+                </svg>
+                <div class="gauge-center">
                     <span class="speed-number" id="speed-number">0.0</span>
                     <span class="speed-unit">Mbps</span>
                 </div>
             </div>
 
-            <!-- START BUTTON -->
-            <button class="btn-start" id="btn-start">START TEST</button>
+            <p class="server-line">Server: Cloudflare Edge · auto-nearest location</p>
 
-            <!-- Secondary Metrics -->
+            <button class="btn-start" id="btn-start">START TEST</button>
+            <p class="data-note">Uses approx. 10–40 MB of data per test</p>
+
             <div class="metrics-grid">
                 <div class="metric-card glass">
-                    <span class="metric-label">Ping</span>
-                    <span class="metric-value" id="ping-val">-- <small>ms</small></span>
-                </div>
-                <div class="metric-card glass">
-                    <span class="metric-label">Jitter</span>
-                    <span class="metric-value" id="jitter-val">-- <small>ms</small></span>
-                </div>
-                <div class="metric-card glass">
+                    <svg class="m-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12m0 0l-5-5m5 5l5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="metric-label">Download</span>
-                    <span class="metric-value" id="dl-val">-- <small>Mbps</small></span>
+                    <span class="metric-value" id="dl-val">--</span>
+                    <small class="m-unit">Mbps</small>
                 </div>
                 <div class="metric-card glass">
+                    <svg class="m-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V8m0 0l-5 5m5-5l5 5M4 4h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="metric-label">Upload</span>
-                    <span class="metric-value" id="ul-val">-- <small>Mbps</small></span>
+                    <span class="metric-value" id="ul-val">--</span>
+                    <small class="m-unit">Mbps</small>
+                </div>
+                <div class="metric-card glass">
+                    <svg class="m-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="metric-label">Ping</span>
+                    <span class="metric-value" id="ping-val">--</span>
+                    <small class="m-unit">ms</small>
+                </div>
+                <div class="metric-card glass">
+                    <svg class="m-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span class="metric-label">Jitter</span>
+                    <span class="metric-value" id="jitter-val">--</span>
+                    <small class="m-unit">ms</small>
                 </div>
             </div>
+
+            <div class="actions-row">
+                <button class="btn-secondary" id="btn-share" disabled>Share result</button>
+            </div>
         </section>
 
-        <!-- AD SLOT 2 -->
-        <div class="ad-slot">Advertisement (Mid-Page)</div>
+        <section class="history-section">
+            <div class="history-head">
+                <h2>Recent tests on this device</h2>
+                <button class="btn-ghost" id="btn-clear-history">Clear</button>
+            </div>
+            <div id="history-list" class="history-list"></div>
+        </section>
 
-        <!-- PIVOT CARDS (Crucial for AdSense pageviews) -->
+        <div class="ad-slot" aria-hidden="true"></div>
+
         <section class="pivot-section">
-            <h2 class="section-title">What do your numbers mean?</h2>
+            <h2 class="section-title">Understand your results</h2>
             <div class="pivot-grid">
-                <a href="good-speed.html" class="pivot-card glass">
+                <a href="good-speed" class="pivot-card glass">
                     <h3>Is my speed good?</h3>
-                    <p>Check if your connection can handle 4K streaming or competitive gaming.</p>
-                    <span class="arrow">→</span>
+                    <p>Compare your results with requirements for 4K streaming, gaming and video calls.</p>
+                    <span class="arrow" aria-hidden="true">→</span>
                 </a>
-                <a href="glossary.html" class="pivot-card glass">
-                    <h3>What is Ping & Jitter?</h3>
-                    <p>Learn the technical terms that affect your lag and connection stability.</p>
-                    <span class="arrow">→</span>
+                <a href="glossary" class="pivot-card glass">
+                    <h3>What is ping &amp; jitter?</h3>
+                    <p>Plain-English explanations of every metric in your speed test report.</p>
+                    <span class="arrow" aria-hidden="true">→</span>
                 </a>
-                <a href="faq.html" class="pivot-card glass">
+                <a href="faq" class="pivot-card glass">
                     <h3>Why is my upload slow?</h3>
-                    <p>Read our FAQ to troubleshoot common ISP throttling and Wi-Fi issues.</p>
-                    <span class="arrow">→</span>
+                    <p>Troubleshoot Wi-Fi issues, ISP throttling and inconsistent results.</p>
+                    <span class="arrow" aria-hidden="true">→</span>
                 </a>
             </div>
         </section>
 
-        <!-- AD SLOT 3 -->
-        <div class="ad-slot">Advertisement (Footer)</div>
+        <div class="ad-slot" aria-hidden="true"></div>
     </main>
 
-    <!-- FOOTER -->
     <footer class="glass-footer">
         <div class="container footer-inner">
-            <p>&copy; 2026 PingMeter.org. All rights reserved.</p>
+            <p>&copy; 2026 PingMeter. All rights reserved.</p>
             <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
-                <a href="contact.html">Contact</a>
+                <a href="about">About</a>
+                <a href="privacy-policy">Privacy</a>
+                <a href="terms">Terms</a>
+                <a href="contact">Contact</a>
             </div>
         </div>
     </footer>
 
-    <!-- Link JS -->
+    <div class="consent-bar" id="consent-bar" role="dialog" aria-label="Cookie consent">
+        <p>We use cookies (including Google AdSense cookies) to operate the site and serve ads. See our <a href="privacy-policy">Privacy Policy</a>.</p>
+        <div class="consent-actions">
+            <button class="btn-secondary" id="consent-decline">Decline</button>
+            <button class="btn-start btn-small" id="consent-accept">Accept</button>
+        </div>
+    </div>
+
     <script src="js/ping.js"></script>
     <script src="js/download.js"></script>
     <script src="js/upload.js"></script>

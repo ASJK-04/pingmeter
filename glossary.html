@@ -9,6 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="canonical" href="https://pingmeter.pages.dev/SLUG">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="OG_TITLE">
+    <meta property="og:description" content="OG_DESC">
+    <meta property="og:url" content="https://pingmeter.pages.dev/SLUG">
+<meta name="twitter:card" content="summary">
 </head>
 <body>
     <div class="grid-bg"></div>
@@ -39,21 +46,22 @@
 
             <!-- Download Speed -->
             <div class="glossary-item">
-                <h2>Download Speed (Mbps)</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12m0 0l-5-5m5 5l5-5M4 20h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Download Speed (Mbps)</h2>
                 <p>How fast data travels <strong>from the internet to your device</strong>. This is the number ISPs advertise (e.g., "300 Mbps plan"). It affects streaming, loading web pages, and downloading files.</p>
                 <p><strong>Real-world example:</strong> At 100 Mbps, you can download a 5 GB movie in about 7 minutes. At 10 Mbps, it takes over an hour.</p>
             </div>
 
             <!-- Upload Speed -->
             <div class="glossary-item">
-                <h2>Upload Speed (Mbps)</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V8m0 0l-5 5m5-5l5 5M4 4h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>Upload Speed (Mbps)</h2>
                 <p>How fast data travels <strong>from your device to the internet</strong>. This matters for video calls, live streaming, cloud backups, and sending large files.</p>
                 <p><strong>Why it's usually slower:</strong> Most home connections (cable, DSL) are asymmetric — they prioritize download because most users consume more than they create. Fiber plans often offer symmetric speeds (e.g., 300 down / 300 up).</p>
             </div>
 
             <!-- Ping / Latency -->
             <div class="glossary-item">
-                <h2>Ping (Latency)</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ping (Latency)</h2>
                 <p>The time it takes for a small data packet to travel from your device to a server and back, measured in <strong>milliseconds (ms)</strong>. Lower is better.</p>
                 <p><strong>Benchmarks:</strong></p>
                 <ul class="content-list">
@@ -67,27 +75,27 @@
 
             <!-- Jitter -->
             <div class="glossary-item">
-                <h2>Jitter</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12c2-6 4-6 6 0s4 6 6 0 4-6 6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Jitter</h2>
                 <p>The <strong>variation in ping</strong> over time. If your ping is 20ms one moment and 80ms the next, you have high jitter. It causes choppy audio and frozen video in calls.</p>
                 <p><strong>Good jitter:</strong> Below 10ms. <strong>Bad jitter:</strong> Above 30ms. High jitter usually indicates Wi-Fi interference, network congestion, or a struggling router.</p>
             </div>
 
             <!-- Packet Loss -->
             <div class="glossary-item">
-                <h2>Packet Loss (%)</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8zM3 8l9 5 9-5M12 13v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Packet Loss (%)</h2>
                 <p>The percentage of data packets that <strong>never reach their destination</strong>. Even 1-2% packet loss can cause visible issues in games and video calls.</p>
                 <p><strong>Causes:</strong> Faulty cables, overloaded routers, Wi-Fi interference, or ISP infrastructure problems. 0% is ideal; anything above 2% is problematic.</p>
             </div>
 
             <!-- Bandwidth vs Speed -->
             <div class="glossary-item">
-                <h2>Bandwidth vs. Speed</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15a8 8 0 0 1 16 0M12 15l4.5-4.5M2 19h20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Bandwidth vs. Speed</h2>
                 <p><strong>Bandwidth</strong> is the maximum capacity of your connection (like the width of a highway). <strong>Speed</strong> is how fast data actually moves (like the speed limit). You can have 500 Mbps bandwidth but only get 200 Mbps speed if the network is congested.</p>
             </div>
 
             <!-- Mbps vs MB/s -->
             <div class="glossary-item">
-                <h2>Mbps vs. MB/s</h2>
+                <h2><svg class="g-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17L17 3l4 4L7 21zM8 16l1.5 1.5M11 13l1.5 1.5M14 10l1.5 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Mbps vs. MB/s</h2>
                 <p><strong>Mbps</strong> = Megabits per second (used by ISPs). <strong>MB/s</strong> = Megabytes per second (used by file downloads). 1 Byte = 8 bits. So 100 Mbps ≈ 12.5 MB/s actual download speed.</p>
                 <p>This is why your "100 Mbps" plan shows ~12 MB/s when downloading a file from Steam. You're not being cheated — it's just a different unit.</p>
             </div>
@@ -132,5 +140,6 @@
             </div>
         </div>
     </footer>
+  <script src="js/layout.js"></script>
 </body>
 </html>

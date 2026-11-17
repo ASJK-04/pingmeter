@@ -40,7 +40,6 @@ const App = {
             this.renderHistory();
         });
 
-        this.initConsent();
         this.renderHistory();
     },
 
@@ -222,18 +221,6 @@ const App = {
         }
     },
 
-    // ---------- CONSENT ----------
-    initConsent() {
-        if (localStorage.getItem('pm_consent')) return;
-        setTimeout(() => this.els.consentBar.classList.add('show'), 1500);
-        document.getElementById('consent-accept').addEventListener('click', () => this.setConsent('accepted'));
-        document.getElementById('consent-decline').addEventListener('click', () => this.setConsent('declined'));
-    },
-
-    setConsent(value) {
-        try { localStorage.setItem('pm_consent', value); } catch (e) {}
-        this.els.consentBar.classList.remove('show');
-    }
 };
 
 document.addEventListener('DOMContentLoaded', () => App.init());
